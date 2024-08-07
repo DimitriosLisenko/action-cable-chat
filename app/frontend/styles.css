@@ -1,0 +1,56 @@
+* {
+  box-sizing: border-box;
+}
+
+html {
+  font-family: sans-serif;
+}
+
+body {
+  margin: 0;
+}
+
+#app {
+  margin: 3rem auto;
+  border-radius: 10px;
+  padding: 1rem;
+  width: 90%;
+  max-width: 40rem;
+}
+
+#app h2 {
+  font-size: 1.5rem;
+  border-bottom: 2px solid #ccc;
+  color: #af463d;
+  margin: 0 0 1rem 0;
+}
+
+#app .info {
+  font-size: 1rem;
+  color: #544f4f;
+  margin: 0 0 1rem 0;
+}
+
+#app .messages {
+  font-size: 1rem;
+  color: #544f4f;
+  margin: 1rem 0 1rem 0;
+}
+
+#app .message {
+  font-size: 1rem;
+  color: #4d4848;
+  margin: 0 0 1rem 0;
+}
+
+#app input {
+  font: inherit;
+  border: 1px solid #aaa;
+  background-color: #eee;
+}
+
+#app input:focus {
+  outline: none;
+  border-color: #754340;
+  background-color: #fff;
+}
