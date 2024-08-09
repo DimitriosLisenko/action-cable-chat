@@ -1,24 +1,18 @@
-# README
+# Simple Chat App by Ruby on Rails 7 Action Cable + Vue.js 3
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This is a simple chat application by Rails' Action Cable with Vue.js 3 on frontend.
+Visit the blog post for details: [https://yokolet.com/2024/08/08/real-time-app-on-rails-by-action-cable.html](https://yokolet.com/2024/08/08/real-time-app-on-rails-by-action-cable.html)
 
-Things you may want to cover:
+### Versions
+- Ruby 3.3.3
+- Rails 7.1.3.4
+- Vite 5.3.5
+- Vue 3.4.36
 
-* Ruby version
+### How to Run the App
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+1. clone this repo
+2. bundle install
+3. yarn install
+4. bin/dev
+5. Open http://localhost:3000 on different browsers
