@@ -2,7 +2,7 @@
 
 # Make sure RUBY_VERSION matches the Ruby version in .ruby-version and Gemfile
 ARG RUBY_VERSION=3.3.3
-FROM registry.docker.com/library/ruby:$RUBY_VERSION-slim as base
+FROM registry.docker.com/library/ruby:$RUBY_VERSION as base
 
 # Rails app lives here
 WORKDIR /rails
@@ -18,8 +18,17 @@ ENV RAILS_ENV="production" \
 FROM base as build
 
 # Install packages needed to build gems
+RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add -
+RUN echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list
 RUN apt-get update -qq && \
-    apt-get install --no-install-recommends -y build-essential git pkg-config
+    apt-get install --no-install-recommends -y build-essential git pkg-config yarn
+
+ENV NVM_DIR /root/.nvm
+RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.1/install.sh | bash
+RUN . $NVM_DIR/nvm.sh && nvm install 20 && nvm alias default 20 && nvm use default
+
+ENV NODE_PATH $NVM_DIR/versions/node/v20.18.3/lib/node_modules
+ENV PATH      $NVM_DIR/versions/node/v20.18.3/bin:$PATH
 
 # Install application gems
 COPY Gemfile Gemfile.lock ./
@@ -35,7 +44,6 @@ RUN bundle exec bootsnap precompile app/ lib/
 
 # Precompiling assets for production without requiring secret RAILS_MASTER_KEY
 RUN SECRET_KEY_BASE_DUMMY=1 ./bin/rails assets:precompile
-
 
 # Final stage for app image
 FROM base
